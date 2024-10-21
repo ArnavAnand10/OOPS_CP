@@ -1,0 +1,48 @@
+-- Database creation
+CREATE DATABASE IF NOT EXISTS tms;
+
+-- Use the created database
+USE tms;
+
+-- Table for booking packages
+CREATE TABLE IF NOT EXISTS bookpackage (
+    booking_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(30),
+    package VARCHAR(20),
+    persons INT,
+    email VARCHAR(50),
+    price VARCHAR(20),
+    FOREIGN KEY (username) REFERENCES account(username)
+);
+
+-- Table for user accounts
+CREATE TABLE IF NOT EXISTS account (
+    username VARCHAR(30) PRIMARY KEY,
+    name VARCHAR(40),
+    password VARCHAR(30),
+    question VARCHAR(100),
+    answer VARCHAR(50),
+    email VARCHAR(50)
+);
+
+-- Table for booked hotels
+CREATE TABLE IF NOT EXISTS bookhotel (
+    bookingid INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(30),
+    selectedHotelType VARCHAR(30),
+    numberOfPersons VARCHAR(20),
+    totalDays VARCHAR(20),
+    swimmingpool VARCHAR(10),
+    food VARCHAR(10),
+    price VARCHAR(20),
+    FOREIGN KEY (username) REFERENCES account(username)
+);
+
+-- Table for admin accounts
+CREATE TABLE IF NOT EXISTS admin (
+    admin_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(30) UNIQUE,
+    password VARCHAR(30),
+    name VARCHAR(50),
+    email VARCHAR(50) UNIQUE
+);

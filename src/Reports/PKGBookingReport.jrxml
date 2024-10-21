@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null"  pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e31a835d-3788-46ef-8ff6-08d3771fddfc">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+    COUNT(*) AS total_bookings,
+    package,
+    AVG(persons) AS average_persons
+FROM
+    bookpackage
+GROUP BY
+    package;]]>
+	</queryString>
+	<field name="total_bookings" class="java.lang.Long"/>
+	<field name="package" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="average_persons" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="134" y="11" width="303" height="56" uuid="9c4f0f59-a807-4550-9191-eb9bbba04396"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Package Booking Average]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="22" width="100" height="20" uuid="2388ae17-7eff-4753-a0f8-4fef80c4dad6"/>
+				<text><![CDATA[Total Bookings]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="232" y="22" width="100" height="20" uuid="9575e9ae-e05c-4390-a5ae-0842e107b5f3"/>
+				<text><![CDATA[Package Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="22" width="100" height="20" uuid="23c8860b-e340-4d83-a7f8-505fe32002f2"/>
+				<text><![CDATA[Average]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="58" width="100" height="20" uuid="d7ec66ec-29b3-4730-b159-1e851e7e4b8d"/>
+				<textFieldExpression><![CDATA[$F{total_bookings}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="232" y="58" width="100" height="20" uuid="dc79ac79-3450-4a05-9bad-3e77d58be7cf"/>
+				<textFieldExpression><![CDATA[$F{package}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="58" width="100" height="20" uuid="7242261d-b6d4-4d09-9fe0-3344a9f78296"/>
+				<textFieldExpression><![CDATA[$F{average_persons}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

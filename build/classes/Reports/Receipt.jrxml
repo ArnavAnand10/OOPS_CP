@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8de55072-67bf-448c-9381-271db3a20aa4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+        <parameter name="username" class="java.lang.String"/>
+
+	<queryString language="SQL">
+		<![CDATA[SELECT
+    bp.booking_id AS BookingID,
+    bp.package AS Package,
+    bp.persons AS NumberOfPersons,
+    bp.price AS PackagePrice,
+    ah.selectedHotelType AS SelectedHotel,
+    ah.numberOfPersons AS HotelPersons,
+    ah.totalDays AS HotelDays,
+    ah.price AS HotelPrice,
+    a.name AS CustomerName,
+    a.email AS CustomerEmail
+FROM
+    bookpackage bp
+JOIN
+    account a ON bp.username = a.username
+LEFT JOIN
+    bookhotel ah ON bp.booking_id = ah.bookingid
+WHERE
+    bp.username = $P{username};]]>
+	</queryString>
+	<field name="BookingID" class="java.lang.Integer"/>
+	<field name="Package" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NumberOfPersons" class="java.lang.Integer"/>
+	<field name="PackagePrice" class="java.lang.String"/>
+	<field name="SelectedHotel" class="java.lang.String"/>
+	<field name="HotelPersons" class="java.lang.String"/>
+	<field name="HotelDays" class="java.lang.String"/>
+	<field name="HotelPrice" class="java.lang.String"/>
+	<field name="CustomerName" class="java.lang.String"/>
+	<field name="CustomerEmail" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			
+                    <textField>
+    <reportElement x="0" y="0" width="200" height="20" uuid="your_uuid_here"/>
+    <textElement textAlignment="Left"/>
+    <textFieldExpression><![CDATA["Username: " + $P{username}]]></textFieldExpression>
+</textField>
+
+                        <staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="fe39e47a-c01b-48f2-a616-ad0498d49006"/>
+				<text><![CDATA[BookingID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="2" width="100" height="20" uuid="0c1c50ed-f945-4c98-80a1-4187171067ae"/>
+				<text><![CDATA[Package]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="2" width="100" height="20" uuid="f162d085-6ae7-4c64-a6f7-c0364ca30b4a"/>
+				<text><![CDATA[NumberOfPersons]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="2" width="100" height="20" uuid="f4541b69-0fe3-46b7-b076-5b443735c9ed"/>
+				<text><![CDATA[PackagePrice]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="2" width="100" height="20" uuid="90305e8e-60aa-4d05-bb67-936d85286fae"/>
+				<text><![CDATA[SelectedHotel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="2" width="100" height="20" uuid="bcfd006e-3cd3-4b10-8169-81b142a2b9b6"/>
+				<text><![CDATA[HotelPersons]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="64" width="100" height="20" uuid="d6d6537e-ac85-44c3-beef-c9001df61e5c"/>
+				<textFieldExpression><![CDATA[$F{BookingID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="64" width="100" height="20" uuid="28f2efa4-1cb5-4360-b420-3973ce84aadb"/>
+				<textFieldExpression><![CDATA[$F{Package}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="64" width="100" height="20" uuid="9e02760f-fe32-455f-9055-d96f848133a6"/>
+				<textFieldExpression><![CDATA[$F{NumberOfPersons}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="64" width="100" height="20" uuid="7ab6309b-4119-499b-9c9a-11c1f8b9a48c"/>
+				<textFieldExpression><![CDATA[$F{PackagePrice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="64" width="100" height="20" uuid="6b704c10-fb7f-4308-8a13-e0151601df8c"/>
+				<textFieldExpression><![CDATA[$F{SelectedHotel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="64" width="100" height="20" uuid="7717b233-a5a9-4a15-856c-56c2bedd844b"/>
+				<textFieldExpression><![CDATA[$F{HotelPersons}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

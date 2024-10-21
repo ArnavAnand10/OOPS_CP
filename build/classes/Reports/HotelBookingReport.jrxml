@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null"  pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c62fca76-dc5d-49d7-877a-fdd49ebc0ed9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+    COUNT(bookingid) AS total_bookings,
+    selectedHotelType,
+    AVG(CAST(numberOfPersons AS DECIMAL)) AS avg_persons_per_booking
+FROM
+    bookhotel
+GROUP BY
+    selectedHotelType;]]>
+	</queryString>
+	<field name="total_bookings" class="java.lang.Long"/>
+	<field name="selectedHotelType" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="avg_persons_per_booking" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="149" y="17" width="263" height="47" uuid="5d8957b8-61de-4744-9bce-05c27f1b9603"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Hotel Booking Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="31" y="22" width="100" height="20" uuid="3eb075dd-555e-4aad-85c8-2331d7d4035b"/>
+				<text><![CDATA[Total Bookings]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="22" width="100" height="20" uuid="29544a57-63db-4567-8d57-462b6aead6bc"/>
+				<text><![CDATA[Hotel Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="22" width="100" height="20" uuid="7ba8e377-00b1-441a-9634-63fdbbd77bff"/>
+				<text><![CDATA[Average]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="240" splitType="Stretch">
+			<textField>
+				<reportElement x="31" y="56" width="100" height="20" uuid="ad13afd7-8c05-4164-95e5-64ae111e4230"/>
+				<textFieldExpression><![CDATA[$F{total_bookings}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="56" width="100" height="20" uuid="78c653dc-59f3-4605-933b-3748f0e79407"/>
+				<textFieldExpression><![CDATA[$F{selectedHotelType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="56" width="100" height="20" uuid="e32a1171-5fcd-47a3-9e9e-c6361674e13b"/>
+				<textFieldExpression><![CDATA[$F{avg_persons_per_booking}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="3" splitType="Stretch"/>
+	</summary>
+</jasperReport>
